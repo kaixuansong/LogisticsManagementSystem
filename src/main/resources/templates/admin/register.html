@@ -117,8 +117,12 @@
 			}
 			//点击事件
 			btn1.onclick = function () {
+
 				// 判断验证码是否正确
-				var vcode = aInputs[7].value
+				var vcode = aInputs[6].value
+				console.log(vcode)
+				console.log(str)
+				console.log(aInputs[1].value)
 				if (vcode.toLowerCase() != str.toLowerCase()) {
 					oAlert.className = "alert alert-danger";
 					oAlert.style.display = 'block';
@@ -129,31 +133,34 @@
 					//传输到后台
 					$.ajax({
 						method: "post",
-						url: "../../php/register.php",
-						data: {
-							name: aInputs[1].value,
-							phone: aInputs[2].value,
-							password: aInputs[3].value,
-							email: aInputs[4].value,
+						contentType: 'application/json;charset=UTF-8',
+						url: "http://localhost:8080/register",
+						data: JSON.stringify({
+							name: aInputs[0].value,
+							phone: aInputs[1].value,
+							password: aInputs[2].value,
+							email: aInputs[3].value,
 							sex: sex,
-							verification: aInputs[7].value
-						},
+							verification: aInputs[6].value
+						}),
 						success: function (result) {
-							var obj = JSON.parse(result);
-							var data=obj.data;
-							if (obj.code == 200) {
+
+							// var obj = JSON.parse(result)
+							// var data=obj.data;
+							console.log(result)
+							if (result.code == 200) {
 								//弹出提示
 								oAlert.className = "alert alert-success";
 								//设置时间阀，跳转到首页
 								setTimeout(function () {
-									location.href = "#";
+									location.href = "http://localhost:8080";
 								}, 2000);
 							} else {
 								oAlert.className = "alert alert-danger";
 							}
 							//输出提示
 							oAlert.style.display = 'block';
-							oAlert.innerHTML = data.message;
+							oAlert.innerHTML = result.message;
 						},
 						error: function (msg) {
 							alert(msg)

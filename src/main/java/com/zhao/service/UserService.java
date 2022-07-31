@@ -14,5 +14,5 @@ public interface UserService {
      */
     boolean getUserByEmail(String email,String password);
 
-
+    void addUser(String name,String phone,String password,String email,String sex);
 }

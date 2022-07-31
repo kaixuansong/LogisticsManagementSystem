@@ -16,8 +16,10 @@ public interface UserMapper {
      * @return 可能为空，必要时放回User可为Object
      */
 
-    @Select("select * from user where email = #{email} and password = #{password}")
+    @Select("select * from user ")
     User getUserByEmail(@Param("email") String email,@Param("password") String password);
 
+    @Insert("insert into user(name,email,password,phone,sex) values (#{name},#{email},#{password},#{phone},#{sex})")
+    void addUser(@Param("name") String name,@Param("phone") String phone,@Param("password") String password,@Param("email") String email,@Param("sex") String sex);
 
 }

@@ -37,4 +37,14 @@ public class UserServiceImpl implements UserService{
         }
         return false;
     }
+
+    @Override
+    /*
+    *   注册
+    * */
+    public  void addUser(String name, String phone, String password, String email, String sex) {
+       userMapper.addUser(name,phone,password,email,sex);
+
+
+    }
 }
