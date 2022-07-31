@@ -1,0 +1,12 @@
+spring:
+    # 数据库
+    datasource:
+        password: 123456
+        url: jdbc:mysql://localhost:3306/work?useUnicode=true&characterEncoding=utf-8
+        username: root
+# mybatis
+mybatis:
+    mapper-locations: classpath:/mapper/*.xml
+    type-aliases-package: com.huang.pojo
+    configuration:
+        map-underscore-to-camel-case: true
