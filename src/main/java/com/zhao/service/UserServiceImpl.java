@@ -1,6 +1,8 @@
 package com.zhao.service;
 
 import com.zhao.mapper.UserMapper;
+import com.zhao.pojo.User;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,10 @@ public class UserServiceImpl implements UserService{
         /*userMapper.getUserByEmail (email);
             判断用户登录是否成功
         */
-
+        User user=userMapper.getUserByEmail(email,password);
+        if(user!=null){
+            return true;
+        }
         return false;
     }
 }

@@ -1,7 +1,10 @@
 package com.zhao.mapper;
 
 import com.zhao.pojo.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 @Mapper
@@ -12,5 +15,9 @@ public interface UserMapper {
      * @param email 用户邮箱
      * @return 可能为空，必要时放回User可为Object
      */
-    User getUserByEmail(String email);
+
+    @Select("select * from user where email = #{email} and password = #{password}")
+    User getUserByEmail(@Param("email") String email,@Param("password") String password);
+
+
 }

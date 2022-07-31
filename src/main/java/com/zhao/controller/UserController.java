@@ -35,9 +35,12 @@ public class UserController {
         /*先判断用户登录的验证码是否正确，验证码储存在session中，key是 RANDOMKEY */
 
         /*在判断用户登录是否正确*/
-        userService.getUserByEmail (email,password);
+        boolean flag=userService.getUserByEmail (email,password);
+        if (flag == true) {
+            return "redirect:/test1.html";
+        }
 
 //        return new Result ();
-        return "redirect:/";
+        return "redirect:/test2.html";
     }
 }
